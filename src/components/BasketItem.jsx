@@ -1,13 +1,12 @@
+import { useContext } from 'react';
+import { ShopContext } from '../context';
+
 function BasketItem(props) {
-    const {
-        id,
-        name,
-        price,
-        quantity,
-        removeFromBasket = Function.prototype,
-        incQuantity = Function.prototype,
-        decQuantity = Function.prototype,
-    } = props;
+    const { id, name, price, quantity } = props;
+
+    const { removeFromBasket, incQuantity, decQuantity } =
+        useContext(ShopContext);
+
     return (
         <li className="collection-item">
             {name}{' '}
@@ -26,10 +25,10 @@ function BasketItem(props) {
             </i>{' '}
             = {price * quantity} руб.
             <span
-                class="secondary-content"
+                className="secondary-content"
                 onClick={() => removeFromBasket(id)}
             >
-                <i class="material-icons basket-delete">close</i>
+                <i className="material-icons basket-delete">close</i>
             </span>
         </li>
     );
